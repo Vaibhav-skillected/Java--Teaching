@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name="employees")
@@ -15,18 +19,29 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NotNull(message="Name cannot be null")
 	private String name;
+	
+	@NotBlank(message="City is required")
 	private String city;
 	@Column(unique = true, nullable=false)
+	@Email(message="Enter valid email")
 	private String email;
 	private double salary;
-	public Employee(int id, String name, String city,  String email, double salary) {
+	
+	@Pattern(
+			regexp="^[0-9]{10}$",
+					message="Enter valid number")
+	
+	private String mobile;
+	public Employee(int id, String name, String city,  String email, double salary, String mobile) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.email= email;
 		this.salary = salary;
+		this.mobile=mobile;
 	}
 	public Employee() {
 		super();
@@ -61,6 +76,12 @@ public class Employee {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	
 	
