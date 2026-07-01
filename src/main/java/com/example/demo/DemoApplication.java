@@ -153,6 +153,17 @@ public class DemoApplication {
 	
 	
 	
+	//lombok -> is a depenedency used to reduce boilerplate code
+	
+	//@Getter -> generate getter method 
+	//@setter -> generate setter methods
+	
+	//@NoArgsContructur -> create default constructor
+	
+	//@AllargsConstructor -> crete parametetrized constructor 
+	
+	//@Data -> combination of all lombok anotations 
+	
 	
 	
 	

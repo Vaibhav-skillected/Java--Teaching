@@ -10,8 +10,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name="employees")
 public class Employee {
 	
@@ -28,6 +30,7 @@ public class Employee {
 	@Email(message="Enter valid email")
 	private String email;
 	private double salary;
+	//password
 	
 	@Pattern(
 			regexp="^[0-9]{10}$",
