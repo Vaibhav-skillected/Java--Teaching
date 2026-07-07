@@ -165,14 +165,99 @@ public class DemoApplication {
 	//@Data -> combination of all lombok anotations 
 	
 	
+	//Dto -> dto ek object hota hai jo sirf client or server ke beech data transfer karta hai
+	//entity -> database ke liye 
+	//dto -> client ke liye 
+	
+	
+	//entity -> represent database table , used by repository ,
+	//contain all details 
+	//database layer 
+	
+	
+	//DTo -> reprensent api request/ response , used by controller , contain only requred filed 
+	//client layer 
+	
+	
+	
+	//modelMapper
+	
+	
+	//Response :- response means the reply sent by server to the client 
+	
+	//client -> request -> springboot -> response -> client
+	
+	//responseEntity ->
+	//responeEntity is a springboot class that returns response body along with http status code 
+	
+	//http status code -> http status code battata hai ki request successfull hui ya nhi 
+	
+	//200 -> successfull 
+	//201 > created
+	//204 -> deleted
+	//409 -> duplicate
+	
+	//400 -> bad request 
+	//404 -> not found 
+	//403 -> forbidden -> unautherized 
+	//401 -> unauthrized 
+	//500 -> internal server error
+	//504 -> time gateway
+	//502 -> 
 	
 	
 	
 	
+	//list dto 
 	
 	
+	//pagination -> large data ko pages mein devide karna
+	//better performance , less memory , fast response 
+	
+	//what is an interface? 
+	
+	//pageable -> Spring interface that provide paging information
+	
+	//PageRequest -> used to create pageable object
+	
+	//page -> contains paginated data and page information
+	
+	//entity , dto , repository , service -> controller 
+	//select * from empoyee limit offset(4,5);
+	
+	//client -> controller -> service-> pagerequest -> 
+	//repository -> database -> records/data -> client
+	
+	//connect with frontend 
+	
+	//gpt help 
+	
+	//jpa -> java persitance Api 
+	
+	//jpql -> java persitance query language 
+	
+//jpql is a query language used to fetch data from entity object 
+//instead of database table
+	
+	//jpql works on entity 
+	//sql -> works on database table 
+	
+	//why jpql ? 
 	
 	
+	//sql-> works on table and database,
+//			use column name
+//			database dependent
+//			table name required
+	
+	//jpql -> works on entity 
+//			  varaible 
+	//database independnt
+	//entity name required 
+	
+	//@query annotation allows us to write jpql queries manually 
+	
+	//
 	
 	
 	

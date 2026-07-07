@@ -1,10 +1,13 @@
 package com.example.demo.entity;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -24,12 +27,19 @@ public class Employee {
 	@NotNull(message="Name cannot be null")
 	private String name;
 	
+	private String image;
+	//cloudinary 
+	
+	
 	@NotBlank(message="City is required")
 	private String city;
 	@Column(unique = true, nullable=false)
 	@Email(message="Enter valid email")
 	private String email;
 	private double salary;
+	
+//	@ManyToOne
+//	private Manager manager;
 	//password
 	
 	@Pattern(
@@ -37,6 +47,8 @@ public class Employee {
 					message="Enter valid number")
 	
 	private String mobile;
+	
+	
 	public Employee(int id, String name, String city,  String email, double salary, String mobile) {
 		super();
 		this.id = id;

@@ -1,16 +1,23 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.EmployeeDto;
 import com.example.demo.entity.Employee;
 import com.example.demo.exception.EmailAlreadyExistsException;
 import com.example.demo.exception.EmployeeNotFoundException;
 import com.example.demo.repository.EmployeeRepository;
+
 
 @Service
 public class EmployeeService {
@@ -18,23 +25,64 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repository;
 	
-	public Employee saveEmployee(Employee employee) {
+	public Employee saveEmployee(EmployeeDto dto) {
 //		
 //		repository.find
 		
-		Employee existingEmployee = repository.findByEmail(employee.getEmail());
+		
+		//dto-> entity 
+		Employee existingEmployee = repository.findByEmail(dto.getEmail());
 		if(existingEmployee!= null) {
 			throw new EmailAlreadyExistsException("Email Already exists");
 		}
+		
+		Employee employee = new Employee();
+		
+		employee.setName(dto.getName());
+		employee.setEmail(dto.getEmail());
+		employee.setMobile(dto.getMobile());
+		employee.setCity(dto.getCity());
+		
 		return repository.save(employee);
 	}
 	
-	public List<Employee> getAll(){
-		return repository.findAll();
+//	public List<Employee> getAll(){
+//		return repository.findAll();
+//	}
+	
+	public List<EmployeeDto> getAll() {
+
+	    List<Employee> employees = repository.findAll();
+
+	    List<EmployeeDto> employeeDtos = new ArrayList<>();
+
+	    for (Employee employee : employees) {
+
+	        EmployeeDto dto = new EmployeeDto();
+
+	        dto.setName(employee.getName());
+	        dto.setEmail(employee.getEmail());
+	        dto.setCity(employee.getCity());
+	        dto.setMobile(employee.getMobile());
+
+	        employeeDtos.add(dto);
+	    }
+
+	    return employeeDtos;
 	}
 	
-	public Employee getById(int id) {
-		return repository.findById(id).orElse(null);
+	//entity -> dto 
+	public EmployeeDto getById(int id) {
+		Employee employee = repository.findById(id).orElseThrow();
+		 EmployeeDto dto = new EmployeeDto();
+		 
+		 
+		 dto.setName(employee.getName());
+		 dto.setCity(employee.getCity());
+		 dto.setEmail(employee.getEmail());
+		 dto.setMobile(employee.getMobile());
+		 
+		return dto;
 	}
 	
 	public String deleteEmployee(int id) {
@@ -88,5 +136,39 @@ public class EmployeeService {
 		return repository.save(existingEmployee);
 		
 	}
+	
+	public Page<Employee> getEmployees(
 
+			int page,
+
+			int size){
+
+			Pageable pageable=
+
+			PageRequest.of(page,size,Sort.by("name").ascending());
+
+			return repository.findAll(pageable);
+
+			}
+	
+	
+	 public List<Employee> getAllEmployees(){
+
+	        return repository.getAllEmployees();
+
+	    }
+	 
+	 public List<Employee> getEmployeeByName(String name){
+
+		    return repository.getEmployeeByName(name);
+
+		}
+	 
+	 public List<Employee> searchEmployeeByName(String name) {
+
+	        return repository.searchByName(name);
+
+	    }
+
+	 
 }
