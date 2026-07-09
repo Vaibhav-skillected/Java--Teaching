@@ -3,11 +3,17 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.Async;
 
+import com.example.demo.corsConfig.DotEnvLoader;
+
+@Async
 @SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
+		
+		 DotEnvLoader.load();
 		ApplicationContext context =  SpringApplication.run(DemoApplication.class, args);
 		
 		
@@ -257,11 +263,30 @@ public class DemoApplication {
 	
 	//@query annotation allows us to write jpql queries manually 
 	
-	//
+	//application.properties stores application configrations 
+	//real configrations stores in .env file only 
+	//refere varaibles in application.properties
 	
 	
+	//@value reads values from application.propeties
+	
+	//user -> img select -> controller-> multipartFile -> serveice
+	//-> Path -> transferto -> uploade folder -> successmeassage 
 	
 	
+	//env file handel kro
+	//env dependency , 
 	
+	//wjhy we use @RequestParam intsead of requestbody
+	//-> upload files are sent as multipart/form data not json
+	
+	//path -> to represent the folder/file location in platform-independent way 
+	
+	//why tranferto()-> to save uploaded file to destination.
+	
+	//multipartfile -> it is a spring interface that represents an upload files
+	
+	
+	//controller -> serveice-> data save-> emailservice -> javamailsender -> smtp -> inbox
 
 }

@@ -9,6 +9,7 @@ public class EmployeeDto {
 	private String city;
 	
 	private String mobile;
+	private double salary;
 
 	
 	
@@ -55,6 +56,14 @@ public class EmployeeDto {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
 	}
 	
 	

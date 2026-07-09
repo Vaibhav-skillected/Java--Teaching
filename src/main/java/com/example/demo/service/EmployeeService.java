@@ -25,6 +25,9 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repository;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public Employee saveEmployee(EmployeeDto dto) {
 //		
 //		repository.find
@@ -42,8 +45,21 @@ public class EmployeeService {
 		employee.setEmail(dto.getEmail());
 		employee.setMobile(dto.getMobile());
 		employee.setCity(dto.getCity());
+		employee.setSalary(dto.getSalary());
 		
-		return repository.save(employee);
+		
+		
+		 Employee savedEmployee = repository.save(employee);
+
+		    // Send Welcome Email
+		    emailService.sendWelcomeEmail(
+		            savedEmployee.getEmail(),
+		            savedEmployee.getName()
+		    );
+
+		    return savedEmployee;
+		
+		
 	}
 	
 //	public List<Employee> getAll(){

@@ -29,6 +29,7 @@ public class Employee {
 	
 	private String image;
 	//cloudinary 
+	//otp email ke through 
 	
 	
 	@NotBlank(message="City is required")
