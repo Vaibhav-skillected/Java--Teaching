@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDto;
@@ -27,6 +28,9 @@ public class EmployeeService {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	public Employee saveEmployee(EmployeeDto dto) {
 //		
@@ -46,7 +50,18 @@ public class EmployeeService {
 		employee.setMobile(dto.getMobile());
 		employee.setCity(dto.getCity());
 		employee.setSalary(dto.getSalary());
+		//employee.setPassword(dto.getPassword());
 		
+		employee.setPassword(
+
+				passwordEncoder.encode(
+
+				dto.getPassword()
+
+				)
+
+				);
+		employee.setRole(dto.getRole());
 		
 		
 		 Employee savedEmployee = repository.save(employee);

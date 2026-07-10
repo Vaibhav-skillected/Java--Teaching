@@ -39,10 +39,19 @@ public class Employee {
 	private String email;
 	private double salary;
 	
+	private String password;
+	
+	private String role;
 //	@ManyToOne
 //	private Manager manager;
 	//password
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	@Pattern(
 			regexp="^[0-9]{10}$",
 					message="Enter valid number")
@@ -98,6 +107,18 @@ public class Employee {
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

@@ -10,6 +10,9 @@ public class EmployeeDto {
 	
 	private String mobile;
 	private double salary;
+	private String password;
+	
+	private String role;
 
 	
 	
@@ -64,6 +67,22 @@ public class EmployeeDto {
 
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
