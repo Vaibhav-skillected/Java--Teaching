@@ -68,9 +68,10 @@ public class SecurityConfig {
 
     	.requestMatchers("/employee/getbyidres/**").authenticated()
 
-    	.requestMatchers("/employee/update/**").hasRole("ADMIN")
+    	//.requestMatchers("/employee/update/**").hasRole("ADMIN")
+    	.requestMatchers("/employee/update/**").authenticated()
 
-    	.requestMatchers("/employee/**").hasRole("ADMIN")
+    	//.requestMatchers("/employee/**").hasRole("ADMIN")
 
     	.anyRequest().authenticated()
 

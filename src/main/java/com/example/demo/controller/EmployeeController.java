@@ -26,8 +26,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-	@Autowired
-	private EmployeeService service;
+	private final EmployeeService service;
+
+	EmployeeController(EmployeeService service) {
+		this.service = service;
+	}
 
 //	@PostMapping("/save")
 //	public Employee save(@Valid @RequestBody EmployeeDto emp) {
@@ -74,7 +77,7 @@ public class EmployeeController {
 
 	@PutMapping("/update/{id}")
 	public Employee updateEmplaoyee(@PathVariable int id, @RequestBody Employee employee) {
-
+		System.out.println("Controller reached");
 		return service.updateEmployee(id, employee);
 
 	}

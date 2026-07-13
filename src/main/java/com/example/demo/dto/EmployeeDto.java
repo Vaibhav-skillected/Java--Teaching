@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.enums.Role;
+
 public class EmployeeDto {
 
 	private String name;
@@ -12,7 +14,7 @@ public class EmployeeDto {
 	private double salary;
 	private String password;
 	
-	private String role;
+	private Role role;
 
 	
 	
@@ -77,11 +79,11 @@ public class EmployeeDto {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

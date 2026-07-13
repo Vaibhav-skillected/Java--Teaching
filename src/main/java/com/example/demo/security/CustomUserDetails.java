@@ -20,10 +20,16 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return Collections.singleton(
-                new SimpleGrantedAuthority(employee.getRole())
-        );
+        System.out.println("Role from DB = " + employee.getRole());
 
+        Collection<? extends GrantedAuthority> authorities =
+                Collections.singleton(
+                        new SimpleGrantedAuthority(employee.getRole().name())
+                );
+
+        System.out.println("Authorities = " + authorities);
+
+        return authorities;
     }
 
     @Override

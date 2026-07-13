@@ -2,8 +2,12 @@ package com.example.demo.entity;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.example.demo.enums.Role;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,7 +20,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity
-@Data
 @Table(name="employees")
 public class Employee {
 	
@@ -41,15 +44,15 @@ public class Employee {
 	
 	private String password;
 	
-	private String role;
-//	@ManyToOne
+	@Enumerated(EnumType.STRING)
+	private Role  role;//	@ManyToOne
 //	private Manager manager;
 	//password
 	
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	@Pattern(
@@ -59,15 +62,15 @@ public class Employee {
 	private String mobile;
 	
 	
-	public Employee(int id, String name, String city,  String email, double salary, String mobile) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.city = city;
-		this.email= email;
-		this.salary = salary;
-		this.mobile=mobile;
-	}
+//	public Employee(int id, String name, String city,  String email, double salary, String mobile) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//		this.city = city;
+//		this.email= email;
+//		this.salary = salary;
+//		this.mobile=mobile;
+//	}
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
