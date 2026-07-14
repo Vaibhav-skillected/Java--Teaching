@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.example.demo.corsConfig.DotEnvLoader;
 
-@Async
+@EnableAsync
 @SpringBootApplication
 public class DemoApplication {
 
@@ -288,5 +289,79 @@ public class DemoApplication {
 	
 	
 	//controller -> serveice-> data save-> emailservice -> javamailsender -> smtp -> inbox
+	
+	
+	//authentication -> identify verification -> login , happenFirst
+	
+	//authorization -> permission checking , aceess, after login 
+	
+	
+	//password 
+	
+	//dto.getpassword -> getpassword-> encode() -> converts bcrypt has
+	//setpassword()-> stores has 
+	
+	//login api -> email and pass -> database connect 
+	
+	//user -> email -> password -> employeeservice -> bscrypt 
+	//databse -> password match -> login success 
+	
+	
+	//spring security , security config , passwordbcrypt , serveceice -> pass set -> encode get password
+	
+	//curd opertion 
+	//security config , 
+	
+	//authorization -> role based , admin -> create delete update 
+	//employee -> get ,
+	
+	//client -> login request -> spring security -> authentication 
+	//authentication -> controller -> service -> repository -> db
+	
+	//JWT -> Json Web token
+	//user login create one secrete key 
+	//jwt is a secure token , its store information ,
+	//jwt is a digital signature 
+	//it cannot modified 
+	
+	//header -> algorithm->HS256,  token type-> jwt  
+	//payload -> email, userid, role , token expiry 
+	//signature -> the signature ensures no one can modify the token
+	
+	//write code (header -> algorithm use or token type)
+	//payload -> (sign in time get data and create key)
+	//signature -> (combination header + payload ) -> generate key 
+	
+	//user login -> springboot -> authenetication manager ->userdetails service
+	//database -> password match -> jwt service -> generate token -> client -> token store 
+	//every request -> jwt filter -> validate token -> controller 
+	
+	//where store token -> frontend store token 
+	
+	//stateless authentication -> server stores nothing 
+	//everything is in inside  token
+	
+	
+	//SecurityConfig :- everything enters through this class 
+	//no api request reaches the controller without first passing
+	//through security config 
+//	(//main gate of spring security)
+	
+	//@configuration :- this class contains configurations ,
+//	spring scans during startup 
+//	its create all security beans
+	
+	//authentication provider -> heart of spring security
+	//login -> find user -> check password -> authentication 
+	
+	
+	
+	//configuration -> @bean -> password encode ->  authentication provider 
+	//authentication manager -> security filter chain ->jwt filter -> enmployee -> jwt scerter key
+	//jwt token generated 
+	
+	
+	
+	
 
 }

@@ -62,6 +62,7 @@ public class EmployeeService {
 
 				);
 		employee.setRole(dto.getRole());
+		//employee or admin 
 		
 		
 		 Employee savedEmployee = repository.save(employee);

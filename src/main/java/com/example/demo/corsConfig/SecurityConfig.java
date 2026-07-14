@@ -26,23 +26,26 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
-    
+    //calll register time
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    //cll login time 
     @Bean
     public AuthenticationProvider authenticationProvider() {
 
+    	//dao -> databse acess object -> this provides authentictes users using database
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider(customUserDetailsService);
-
+//bcrypt pass and compare password db and user entered
         provider.setPasswordEncoder(passwordEncoder());
 
         return provider;
     }
     
+    //authentication manager controls login
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration configuration)
@@ -52,26 +55,29 @@ public class SecurityConfig {
 
     }
 
+    //every api  must pass through security before entering 
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
 
     	http
-
+    	
+    	//cross site request forgery
+//its protects browser sessions 
     	.csrf(csrf->csrf.disable())
 
     	.authorizeHttpRequests(auth->auth
 
     	.requestMatchers("/employee/save","/auth/**").permitAll()
 
-    	.requestMatchers("/employee/getall").authenticated()
+    	.requestMatchers("/employee/getall").hasRole("EMPLOYEE")
 
     	.requestMatchers("/employee/getbyidres/**").authenticated()
 
-    	//.requestMatchers("/employee/update/**").hasRole("ADMIN")
-    	.requestMatchers("/employee/update/**").authenticated()
-
-    	//.requestMatchers("/employee/**").hasRole("ADMIN")
+    	.requestMatchers("/employee/update/**").hasRole("ADMIN")
+ 
+    	//.hasAny()
 
     	.anyRequest().authenticated()
 
