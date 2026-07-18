@@ -28,5 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return new CustomUserDetails(employee);
     }
-
+//employee-> repository -> userdetial service -> user details -> 
+    //authorities -> authentication provider -> authentication manager 
 }

@@ -82,4 +82,14 @@ protected void doFilterInternal(
 
     filterChain.doFilter(request, response);
 }
+  
+  //client -> authorization header -> jwt filter -> exctract tokenn -> extrcta username/email 
+  //database -> validate -> security context -> controller -> response 
+  
+  
+  //amazon -> open orders -? jwt tokent sent -> jwt filteration -> valid -> order return 
+  //invalid valid -> 401
+  
+  
+  
     }
