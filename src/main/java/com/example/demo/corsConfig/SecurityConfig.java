@@ -69,7 +69,7 @@ public class SecurityConfig {
 
     	.authorizeHttpRequests(auth->auth
 
-    	.requestMatchers("/employee/save","/auth/**").permitAll()
+    	.requestMatchers("/employee/save","/auth/**","/department/**").permitAll()
 
     	.requestMatchers("/employee/getall").hasRole("EMPLOYEE")
 

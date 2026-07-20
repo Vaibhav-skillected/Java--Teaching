@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import org.hibernate.annotations.ManyToAny;
 
 import com.example.demo.enums.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -49,6 +50,12 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
 	
 	@Enumerated(EnumType.STRING)
 	private Role  role;//	@ManyToOne
@@ -128,6 +135,18 @@ public class Employee {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	
 	
