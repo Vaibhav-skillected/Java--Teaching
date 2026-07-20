@@ -15,6 +15,9 @@ public class EmployeeDto {
 	private String password;
 	
 	private Role role;
+	private AddressDto address;
+	
+	private Integer departmentId;
 
 	
 	
@@ -85,6 +88,21 @@ public class EmployeeDto {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	public AddressDto getAddress() {
+	    return address;
+	}
+
+	public void setAddress(AddressDto address) {
+	    this.address = address;
+	}
+
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
 	
 	

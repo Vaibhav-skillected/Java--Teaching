@@ -13,10 +13,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.AddressDto;
 import com.example.demo.dto.EmployeeDto;
+import com.example.demo.entity.Address;
+import com.example.demo.entity.Department;
 import com.example.demo.entity.Employee;
 import com.example.demo.exception.EmailAlreadyExistsException;
 import com.example.demo.exception.EmployeeNotFoundException;
+import com.example.demo.repository.DepartmentRepository;
 import com.example.demo.repository.EmployeeRepository;
 
 
@@ -31,6 +35,9 @@ public class EmployeeService {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private DepartmentRepository departmentRepository;
 	
 	public Employee saveEmployee(EmployeeDto dto) {
 //		
@@ -64,6 +71,27 @@ public class EmployeeService {
 		employee.setRole(dto.getRole());
 		//employee or admin 
 		
+		Address address = new Address();
+
+		address.setHouseNo(dto.getAddress().getHouseNo());
+
+		address.setStreet(dto.getAddress().getStreet());
+
+		address.setCity(dto.getAddress().getCity());
+
+		address.setState(dto.getAddress().getState());
+
+		address.setPincode(dto.getAddress().getPincode());
+
+		employee.setAddress(address);
+		
+		Department department =
+		        departmentRepository.findById(
+		                dto.getDepartmentId()
+		        ).orElseThrow();
+
+		employee.setDepartment(department);
+		
 		
 		 Employee savedEmployee = repository.save(employee);
 
@@ -96,24 +124,54 @@ public class EmployeeService {
 	        dto.setEmail(employee.getEmail());
 	        dto.setCity(employee.getCity());
 	        dto.setMobile(employee.getMobile());
+	        dto.setSalary(employee.getSalary());
+	        dto.setRole(employee.getRole());
+
+	        // Address Mapping
+	        if (employee.getAddress() != null) {
+
+	            AddressDto addressDto = new AddressDto();
+
+	            addressDto.setHouseNo(employee.getAddress().getHouseNo());
+	            addressDto.setStreet(employee.getAddress().getStreet());
+	            addressDto.setCity(employee.getAddress().getCity());
+	            addressDto.setState(employee.getAddress().getState());
+	            addressDto.setPincode(employee.getAddress().getPincode());
+
+	            dto.setAddress(addressDto);
+	        }
 
 	        employeeDtos.add(dto);
 	    }
-
-	    return employeeDtos;
+		return employeeDtos;
 	}
 	
 	//entity -> dto 
 	public EmployeeDto getById(int id) {
 		Employee employee = repository.findById(id).orElseThrow();
-		 EmployeeDto dto = new EmployeeDto();
-		 
-		 
-		 dto.setName(employee.getName());
-		 dto.setCity(employee.getCity());
-		 dto.setEmail(employee.getEmail());
-		 dto.setMobile(employee.getMobile());
-		 
+
+		EmployeeDto dto = new EmployeeDto();
+
+		dto.setName(employee.getName());
+		dto.setEmail(employee.getEmail());
+		dto.setCity(employee.getCity());
+		dto.setMobile(employee.getMobile());
+		dto.setSalary(employee.getSalary());
+		dto.setRole(employee.getRole());
+
+		if (employee.getAddress() != null) {
+
+		    AddressDto addressDto = new AddressDto();
+
+		    addressDto.setHouseNo(employee.getAddress().getHouseNo());
+		    addressDto.setStreet(employee.getAddress().getStreet());
+		    addressDto.setCity(employee.getAddress().getCity());
+		    addressDto.setState(employee.getAddress().getState());
+		    addressDto.setPincode(employee.getAddress().getPincode());
+
+		    dto.setAddress(addressDto);
+		}
+
 		return dto;
 	}
 	
