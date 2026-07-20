@@ -361,6 +361,18 @@ public class DemoApplication {
 	//jwt token generated 
 	
 	
+	//user data store -> registeration -> controller -> service->  repo -> entity
+	//dto -> data transfer object 
+	
+	//login -> dto -> auth service -> auth controller
+	//email password , logic -> rest api
+	
+	
+	
+	 //practice //revision //hard topic collect and tell me 
+	 //project topic -> 
+	
+	
 	
 	
 
